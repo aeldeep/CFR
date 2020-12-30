@@ -21,6 +21,8 @@ namespace RegisterNewUser.Controllers
             {
                 using(UsersEntities us = new UsersEntities())
                 {
+                    U.Password=Encode.EncodePasswordToBase64(U.Password);
+                    U.ConfirmPassword= U.Password;
                     us.Users.Add(U);
                     us.SaveChanges();
                     ModelState.Clear();
@@ -31,4 +33,5 @@ namespace RegisterNewUser.Controllers
             return View(U);
         }
     }
+
 }
